@@ -8,7 +8,7 @@
   <main>
     <div>
       <button @click="handleSelectData">Select Data</button>
-      <SelectDataDialog />
+      <SelectDataDialog v-if="dialogVisible" />
       <div v-if="selectedData">Selected Data: {{ selectedData }}</div>
     </div>
   </main>
@@ -20,8 +20,8 @@ import { ref } from 'vue';
 import { useSelectDataDialog } from '@/composables/useSelectDataDialog';
 import SelectDataDialog from '@/components/SelectDataDialog.vue';
 
-const selectedData = ref < string | null > (null);
-const { waitForSelection } = useSelectDataDialog();
+const selectedData = ref<string | null>(null);
+const { waitForSelection, visible: dialogVisible } = useSelectDataDialog();
 
 const handleSelectData = async () => {
   selectedData.value = await waitForSelection();

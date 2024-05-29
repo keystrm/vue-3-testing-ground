@@ -18,6 +18,7 @@ export function useSelectDataDialog() {
   };
 
   const waitForSelection = (): Promise<string> => {
+    showDialog();
     return new Promise((resolve) => {
       const interval = setInterval(() => {
         if (selectedData.value !== null) {
@@ -26,7 +27,6 @@ export function useSelectDataDialog() {
           selectedData.value = null; // Reset for next use
         }
       }, 100);
-      showDialog();
     });
   };
 
